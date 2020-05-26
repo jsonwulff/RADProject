@@ -12,42 +12,41 @@ namespace RADProject {
             table = new LinkNode[size];
         }
 
-        public ulong get(ulong x){
-            ulong res = 0UL;
-            LinkNode cur = table[h.hash(x)]
+        public LinkNode get(ulong x){
+
+            LinkNode cur = table[h.hash(x)];
+
             while (cur != null && cur.key != x)
             {
                 cur = cur.next;
             }
-            if (cur != null){
-                res = cur.val;
-            }
-            return res;
+
+            return cur;
         }
         
         public void set(ulong x, ulong v){
-            //We need somekind of pointer/refrence functionality here.
-            ulong r = get(x);
+            
+            LinkNode r = get(x);
 
-            if (r == 0){
+            if (r == null){
                 ulong hash = h.hash(x);
                 LinkNode n = new LinkNode(x, v, table[hash]);
                 table[hash] = n;
             }else{
-                r = v;
+                r.val = v;
             }
         }
 
         public void increment(ulong x, ulong delta){
-            //We need somekind of pointer/refrence functionality here.
-            ulong r = get(x);
+            
+            LinkNode r = get(x);
 
-            if (r == 0){
+            if (r == null){
                 ulong hash = h.hash(x);
                 LinkNode n = new LinkNode(x, delta, table[hash]);
                 table[hash] = n;
             }else{
-                r = r + delta;
+                r.val = r.val + delta;
             }
         }
 
