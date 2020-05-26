@@ -5,7 +5,7 @@ namespace RADProject {
             
         }
         
-        public virtual T hash(ulong x) {
+        public virtual ulong hash(ulong x) {
             return default;
         } 
         

@@ -5,7 +5,7 @@ namespace RADProject {
     public class HashTable {
         private int tableSize;
         private LinkNode[] table;
-        private Hash h;
+        private Hash<BigInteger> h;
 
         public HashTable(int size){
             tableSize = size;
@@ -14,7 +14,7 @@ namespace RADProject {
 
         public LinkNode get(ulong x){
 
-            LinkNode cur = table[h.hash(x)];
+            LinkNode cur = table[(int)h.hash(x)];
 
             while (cur != null && cur.key != x)
             {

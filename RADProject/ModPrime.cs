@@ -20,12 +20,12 @@ namespace RADProject {
             b = new BigInteger(b_bytes);
         }
 
-        public override BigInteger hash(ulong x) {
+        public override ulong hash(ulong x) {
             BigInteger z = (a*x+b);
             BigInteger y = (z&p)+(z>>89);
             if (y>=p) {y-=p;}
 
-            return y & ((1<<l)-1);
+            return (ulong)(y & ((1<<l)-1));
         }
     }
 }
