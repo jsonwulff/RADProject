@@ -2,7 +2,7 @@ using System;
 using System.Numerics;
 
 namespace RADProject {
-    public class ModPrime {
+    public class ModPrime : Hash<BigInteger> {
         public BigInteger a ;
         public BigInteger b;
         public BigInteger p ;
@@ -20,8 +20,7 @@ namespace RADProject {
             b = new BigInteger(b_bytes);
         }
 
-        public BigInteger modHash(ulong x) {
-            
+        public override BigInteger hash(ulong x) {
             BigInteger z = (a*x+b);
             BigInteger y = (z&p)+(z>>89);
             if (y>=p) {y-=p;}

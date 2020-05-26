@@ -2,7 +2,7 @@ using System;
 using System.Numerics;
 
 namespace RADProject {
-    public class MultiplyShift {
+    public class MultiplyShift : Hash<ulong> {
         public ulong a;
         public int l;
         public BigInteger p;
@@ -19,7 +19,7 @@ namespace RADProject {
             l = 10;
         }
 
-        public ulong shiftHash(ulong x) {
+        public override ulong hash(ulong x) {
             return (a * x)>>(64-l);
         }
     }
