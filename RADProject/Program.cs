@@ -26,7 +26,35 @@ namespace RADProject
             elapsedMs = watch.ElapsedMilliseconds;
             Console.WriteLine(elapsedMs);
             
+            Hash mP = new ModPrime(8, false);
+            Hash mS = new MultiplyShift(8, false);
+            HashTable multShiftTable = new HashTable(256, mS);
+            HashTable modPrimeTable = new HashTable(256, mP);
+
+            foreach (var tuple in Stream.CreateStream(10000, 8)){
+                multShiftTable.increment(tuple[0], tuple[1]);
+                modPrimeTable.increment(tuple[0], tuple[1]);
+            }
+
+            ulong mS_QuadSum = 0UL;
+            ulong mP_QuadSum = 0UL;
+
+            for (int i = 0; i < 256; i++){
+                LinkNode mS_cur = multShiftTable.table[i];
+                LinkNode mP_cur = modPrimeTable.table[i];
+
+                while (mS_cur != null){
+                    mS_QuadSum = mS_QuadSum + (mS_cur.val**2);
+                    mS_cur = mS_cur.next;
+                }
+                while (mP_cur != null){
+                    mP_QuadSum = mP_QuadSum + (mP_cur.val**2);
+                    mP_cur = mP_cur.next;
+                }
+            }
             
+            Console.WriteLine("multshift quadratic sum: " + mS_QuadSum);
+            Console.WriteLine("modPrime  quadratic sum: " + mP_QuadSum);
         }
     }
 }
