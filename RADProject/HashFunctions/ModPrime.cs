@@ -2,7 +2,7 @@ using System;
 using System.Numerics;
 using System.Diagnostics;
 
-namespace RADProject {
+namespace RADProject.HashFunctions {
     public class ModPrime : Hash {
         public BigInteger a ;
         public BigInteger b;

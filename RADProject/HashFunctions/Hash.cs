@@ -1,4 +1,4 @@
-namespace RADProject {
+namespace RADProject.HashFunctions {
     public class Hash {
         
         public Hash(int img, bool random) {

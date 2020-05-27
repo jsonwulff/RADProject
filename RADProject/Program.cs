@@ -1,4 +1,7 @@
 ﻿using System;
+using RADProject.HashFunctions;
+using RADProject.HashTabel;
+
 using System.Diagnostics;
 
 namespace RADProject
@@ -23,8 +26,8 @@ namespace RADProject
             HashTable modPrimeTable = new HashTable(256, mP);
             
             foreach (var tuple in Stream.CreateStream(10000, 50)){
-                multShiftTable.increment(tuple.Item1, tuple.Item2);
-                modPrimeTable.increment(tuple.Item1, tuple.Item2);
+                multShiftTable.Increment(tuple.Item1, tuple.Item2);
+                modPrimeTable.Increment(tuple.Item1, tuple.Item2);
             }
             
             ulong mS_QuadSum = 0UL;

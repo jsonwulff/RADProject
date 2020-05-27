@@ -1,7 +1,7 @@
 using System;
 using System.Diagnostics;
 
-namespace RADProject {
+namespace RADProject.HashFunctions {
     public class MultiplyShift : Hash {
         public ulong a;
         public int l;

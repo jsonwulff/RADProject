@@ -1,7 +1,6 @@
-using System;
-using System.Numerics;
 using NUnit.Framework;
 using RADProject;
+using RADProject.HashFunctions;
 
 namespace RADProjectTest {
     public class MultiplyShiftTest {

@@ -1,7 +1,6 @@
 using System;
 
-namespace RADProject 
-{
+namespace RADProject.HashTabel {
     public class LinkNode{
         public LinkNode next;
         public ulong key;
