@@ -2,12 +2,12 @@ using System;
 using System.Numerics;
 
 namespace RADProject {
-    public class MultiplyShift : Hash<ulong> {
+    public class MultiplyShift : Hash {
         public ulong a;
         public int l;
         public BigInteger p;
         
-        public MultiplyShift(int img, bool random){
+        public MultiplyShift(int img, bool random) : base(img, random){
             p = BigInteger.Pow(2, 89) - 1;
             l = img;
             

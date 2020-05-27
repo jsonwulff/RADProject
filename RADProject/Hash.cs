@@ -1,5 +1,9 @@
 namespace RADProject {
-    public class Hash<T> {
+    public class Hash {
+        
+        public Hash(int img, bool random) {
+            
+        }
         
         public void hashgen() {
             

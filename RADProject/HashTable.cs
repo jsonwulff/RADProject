@@ -5,9 +5,9 @@ namespace RADProject {
     public class HashTable {
         public int tableSize;
         public LinkNode[] table;
-        private Hash<BigInteger> h;
+        private Hash h;
 
-        public HashTable(int size, Hash<BigInteger> t){
+        public HashTable(int size, Hash t){
             tableSize = size;
             table = new LinkNode[size];
             h = t;
@@ -25,7 +25,7 @@ namespace RADProject {
             return cur;
         }
         
-        public void set(ulong x, ulong v){
+        public void set(ulong x, int v){
             
             LinkNode r = get(x);
 
@@ -38,7 +38,7 @@ namespace RADProject {
             }
         }
 
-        public void increment(ulong x, ulong delta){
+        public void increment(ulong x, int delta){
             
             LinkNode r = get(x);
 

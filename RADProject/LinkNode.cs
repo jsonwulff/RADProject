@@ -5,9 +5,9 @@ namespace RADProject
     public class LinkNode{
         public LinkNode next;
         public ulong key;
-        public ulong val;
+        public int val;
 
-        public LinkNode(ulong x, ulong delta, LinkNode head){
+        public LinkNode(ulong x, int delta, LinkNode head){
             key = x;
             val = delta;
             next = head;

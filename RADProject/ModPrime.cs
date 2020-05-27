@@ -2,13 +2,13 @@ using System;
 using System.Numerics;
 
 namespace RADProject {
-    public class ModPrime : Hash<BigInteger> {
+    public class ModPrime : Hash {
         public BigInteger a ;
         public BigInteger b;
         public BigInteger p ;
         public int l;
 
-        public ModPrime(int img, bool random){
+        public ModPrime(int img, bool random) : base(img, random){
             p = BigInteger.Pow(2, 89) - 1;
             l = img;
             

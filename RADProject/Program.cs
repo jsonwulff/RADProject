@@ -31,9 +31,9 @@ namespace RADProject
             HashTable multShiftTable = new HashTable(256, mS);
             HashTable modPrimeTable = new HashTable(256, mP);
 
-            foreach (var tuple in Stream.CreateStream(10000, 8)){
-                multShiftTable.increment(tuple[0], tuple[1]);
-                modPrimeTable.increment(tuple[0], tuple[1]);
+            foreach (var tuple in Stream.CreateStream(10000, 50)){
+                multShiftTable.increment(tuple.Item1, tuple.Item2);
+                modPrimeTable.increment(tuple.Item1, tuple.Item2);
             }
 
             ulong mS_QuadSum = 0UL;
@@ -44,11 +44,13 @@ namespace RADProject
                 LinkNode mP_cur = modPrimeTable.table[i];
 
                 while (mS_cur != null){
-                    mS_QuadSum = mS_QuadSum + (mS_cur.val**2);
+                    //This method of using Math.Pow may risk having floating point errors.
+                    mS_QuadSum = mS_QuadSum +  (ulong)(Math.Pow(mS_cur.val,2));
                     mS_cur = mS_cur.next;
                 }
                 while (mP_cur != null){
-                    mP_QuadSum = mP_QuadSum + (mP_cur.val**2);
+                    //This method of using Math.Pow may risk having floating point errors.
+                    mP_QuadSum = mP_QuadSum + (ulong)(Math.Pow(mP_cur.val,2));
                     mP_cur = mP_cur.next;
                 }
             }
