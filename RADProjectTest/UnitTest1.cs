@@ -19,7 +19,7 @@ namespace RADProjectTest
 
         [Test]
         public void TestModuloModPrime() {
-            ModPrime modPrime = new ModPrime();
+            ModPrime modPrime = new ModPrime(12, false);
             foreach (var tuple in Stream.CreateStream(100,50)) {
                 x = tuple.Item1;
                 modPrime.hashgen();

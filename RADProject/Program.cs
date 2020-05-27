@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace RADProject
 {
@@ -6,14 +7,26 @@ namespace RADProject
     {
         static void Main(string[] args)
         {
-            foreach (var tuple in Stream.CreateStream(100, 50)) {
-                Console.WriteLine(tuple);
+            ModPrime modPrime = new ModPrime(12, false);
+            MultiplyShift mulShift = new MultiplyShift(12, false);
+            mulShift.hashgen();
+            var watch = System.Diagnostics.Stopwatch.StartNew();
+            foreach (var tuple in Stream.CreateStream(10000, 50)) {
+                modPrime.hash(tuple.Item1);
             }
+            watch.Stop();
+            var elapsedMs = watch.ElapsedMilliseconds;
+            Console.WriteLine(elapsedMs);
             
-            // var watch = System.Diagnostics.Stopwatch.StartNew();
-            // // the code that you want to measure comes here
-            // watch.Stop();
-            // var elapsedMs = watch.ElapsedMilliseconds;
+            watch = Stopwatch.StartNew();
+            foreach (var tuple in Stream.CreateStream(10000, 50)) {
+                mulShift.hash(tuple.Item1);
+            }
+            watch.Stop();
+            elapsedMs = watch.ElapsedMilliseconds;
+            Console.WriteLine(elapsedMs);
+            
+            
         }
     }
 }

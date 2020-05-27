@@ -7,6 +7,18 @@ namespace RADProject {
         public int l;
         public BigInteger p;
         
+        public MultiplyShift(int img, bool random){
+            p = BigInteger.Pow(2, 89) - 1;
+            l = img;
+            
+            if (random){
+                hashgen();
+            }else{
+                Byte[] a_bytes = {0x53, 0x54, 0x96, 0x72, 0xa8, 0xb1, 0x09, 0xd4};
+                a = BitConverter.ToUInt64(a_bytes,0);
+            }
+        }
+        
         public void hashgen() {
             Random rnd = new System.Random();
             ulong z = 0UL;
