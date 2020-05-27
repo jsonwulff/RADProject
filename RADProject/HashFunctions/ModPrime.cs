@@ -1,5 +1,6 @@
 using System;
 using System.Numerics;
+using System.Diagnostics;
 
 namespace RADProject {
     public class ModPrime : Hash {
@@ -41,6 +42,18 @@ namespace RADProject {
             if (y>=p) {y-=p;}
 
             return (ulong)(y & ((1UL<<l)-1));
+        }
+
+        public void TestMultiplyModPrime(int n, int l) {
+            Console.WriteLine(">> Testing multiply-mod-prime with n = {0}, l = {1}", n, l);
+            ulong hashSum = 0;
+            var watch = Stopwatch.StartNew();
+            foreach (var tuple in Stream.CreateStream(n, l)) {
+                hashSum += hash(tuple.Item1);
+            }
+            watch.Stop();
+            var elapsedMs = watch.ElapsedMilliseconds;
+            Console.WriteLine("Took {0}ms to execute with sum {1}", elapsedMs, hashSum);
         }
     }
 }

@@ -5,44 +5,35 @@ namespace RADProject
 {
     class Program
     {
-        static void Main(string[] args)
-        {
-            ModPrime modPrime = new ModPrime(12, false);
-            MultiplyShift mulShift = new MultiplyShift(12, false);
-            mulShift.hashgen();
-            var watch = System.Diagnostics.Stopwatch.StartNew();
-            foreach (var tuple in Stream.CreateStream(10000, 50)) {
-                modPrime.hash(tuple.Item1);
-            }
-            watch.Stop();
-            var elapsedMs = watch.ElapsedMilliseconds;
-            Console.WriteLine(elapsedMs);
+        static void Main(string[] args) {
             
-            watch = Stopwatch.StartNew();
-            foreach (var tuple in Stream.CreateStream(10000, 50)) {
-                mulShift.hash(tuple.Item1);
-            }
-            watch.Stop();
-            elapsedMs = watch.ElapsedMilliseconds;
-            Console.WriteLine(elapsedMs);
+            Console.WriteLine(">>>> OPGAVE 1 <<<<");
+            
+            ModPrime multiplyModPrime = new ModPrime(63, false);
+            multiplyModPrime.TestMultiplyModPrime(1000000, 63);
+            
+            MultiplyShift multiplyShift = new MultiplyShift(63, false);
+            multiplyShift.TestMultiplyShift(1000000, 63);
+            
+
             
             Hash mP = new ModPrime(8, false);
             Hash mS = new MultiplyShift(8, false);
             HashTable multShiftTable = new HashTable(256, mS);
             HashTable modPrimeTable = new HashTable(256, mP);
-
+            
             foreach (var tuple in Stream.CreateStream(10000, 50)){
                 multShiftTable.increment(tuple.Item1, tuple.Item2);
                 modPrimeTable.increment(tuple.Item1, tuple.Item2);
             }
-
+            
             ulong mS_QuadSum = 0UL;
             ulong mP_QuadSum = 0UL;
-
+            
             for (int i = 0; i < 256; i++){
                 LinkNode mS_cur = multShiftTable.table[i];
                 LinkNode mP_cur = modPrimeTable.table[i];
-
+            
                 while (mS_cur != null){
                     //This method of using Math.Pow may risk having floating point errors.
                     mS_QuadSum = mS_QuadSum +  (ulong)(Math.Pow(mS_cur.val,2));
