@@ -3,18 +3,19 @@ using System.Numerics;
 
 namespace RADProject {
     public class HashTable {
-        private int tableSize;
-        private LinkNode[] table;
+        public int tableSize;
+        public LinkNode[] table;
         private Hash<BigInteger> h;
 
-        public HashTable(int size){
+        public HashTable(int size, Hash<BigInteger> t){
             tableSize = size;
             table = new LinkNode[size];
+            h = t;
         }
 
         public LinkNode get(ulong x){
 
-            LinkNode cur = table[(int)h.hash(x)];
+            LinkNode cur = table[h.hash(x)];
 
             while (cur != null && cur.key != x)
             {
