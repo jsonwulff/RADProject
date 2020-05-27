@@ -20,16 +20,13 @@ namespace RADProjectTest
         [Test]
         public void TestModuloModPrime() {
             ModPrime modPrime = new ModPrime();
-            foreach (var tuple in Stream.CreateStream(1,50)) {
+            foreach (var tuple in Stream.CreateStream(100,50)) {
                 x = tuple.Item1;
                 modPrime.hashgen();
                 BigInteger aTest = modPrime.a;
-                Assert.GreaterOrEqual(modPrime.p, (BigInteger)0);
-                Assert.GreaterOrEqual(modPrime.a, (BigInteger)0);
-                Assert.GreaterOrEqual(modPrime.b, (BigInteger)0);
                 Assert.GreaterOrEqual(modPrime.l, (int)0);
                 BigInteger modTest = ((aTest * x + modPrime.b) % modPrime.p) % (BigInteger) Math.Pow(2, modPrime.l);
-                Assert.AreEqual(modTest, modPrime.hash(x));
+                Assert.AreEqual((ulong)modTest, modPrime.hash(x));
             }
 
         }
