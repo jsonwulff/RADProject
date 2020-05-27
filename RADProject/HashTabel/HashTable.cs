@@ -13,19 +13,20 @@ namespace RADProject.HashTabel {
         }
 
         public LinkNode Get(ulong x) {
-            LinkNode cur = table[h.hash(x)];
+            LinkNode cur = table[h.hash<ulong>(x)];
 
             while (cur != null && cur.key != x) {
                 cur = cur.next;
             }
+
             return cur;
         }
-        
+
         public void Set(ulong x, int v) {
             LinkNode r = Get(x);
 
             if (r == null) {
-                ulong hash = h.hash(x);
+                ulong hash = h.hash<ulong>(x);
                 LinkNode n = new LinkNode(x, v, table[hash]);
                 table[hash] = n;
             } else {
@@ -33,16 +34,18 @@ namespace RADProject.HashTabel {
             }
         }
 
-        public void Increment(ulong x, int delta){
+        public void Increment(ulong x, int delta) {
             LinkNode r = Get(x);
 
             if (r == null) {
-                ulong hash = h.hash(x);
+                ulong hash = h.hash<ulong>(x);
                 LinkNode n = new LinkNode(x, delta, table[hash]);
                 table[hash] = n;
             } else {
                 r.val = r.val + delta;
             }
         }
+
+        public void TestHashTable(int n, Hash hashFunction, int[] lValues) { }
     }
 }

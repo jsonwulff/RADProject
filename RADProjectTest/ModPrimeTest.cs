@@ -7,9 +7,7 @@ using RADProject.HashFunctions;
 namespace RADProjectTest {
     public class ModPrimeTest {
         [SetUp]
-        public void Setup() {
-            
-        }
+        public void Setup() { }
 
         [Test]
         public void TestModPrime() {
@@ -18,13 +16,13 @@ namespace RADProjectTest {
             BigInteger b = modPrime.b;
             BigInteger p = modPrime.p;
             BigInteger twoPowL = (BigInteger) Math.Pow(2, modPrime.l);
-            foreach (var tuple in Stream.CreateStream(100,50)) {
+            foreach (var tuple in Stream.CreateStream(100, 50)) {
                 ulong x = tuple.Item1;
-                ulong multiplyModPrime = (ulong)(((a * x + b) % p) % twoPowL);
+                ulong multiplyModPrime = (ulong) (((a * x + b) % p) % twoPowL);
                 Assert.AreEqual(multiplyModPrime, modPrime.hash(x));
             }
         }
-        
+
         [Test]
         public void TestModPrimeRandom() {
             ModPrime modPrime = new ModPrime(63, true);
@@ -32,9 +30,9 @@ namespace RADProjectTest {
             BigInteger b = modPrime.b;
             BigInteger p = modPrime.p;
             BigInteger twoPowL = (BigInteger) Math.Pow(2, modPrime.l);
-            foreach (var tuple in Stream.CreateStream(100,63)) {
+            foreach (var tuple in Stream.CreateStream(100, 63)) {
                 ulong x = tuple.Item1;
-                ulong multiplyModPrime = (ulong)(((a * x + b) % p) % twoPowL);
+                ulong multiplyModPrime = (ulong) (((a * x + b) % p) % twoPowL);
                 Assert.AreEqual(multiplyModPrime, modPrime.hash(x));
             }
         }
