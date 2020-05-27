@@ -40,7 +40,7 @@ namespace RADProject {
             BigInteger y = (z&p)+(z>>89);
             if (y>=p) {y-=p;}
 
-            return (ulong)(y & ((1<<l)-1));
+            return (ulong)(y & ((1UL<<l)-1));
         }
     }
 }
