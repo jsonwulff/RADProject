@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace RADProject {
     public class Stream {
-        public static IEnumerable<Tuple<ulong, int>> CreateStream(int n, int l, bool seed) {
+        public static IEnumerable<Tuple<ulong, int>> CreateStream(int n, int l, bool useSeed) {
             // We generate a random uint64 number .
             Random rnd;
-            rnd = seed ? new Random(1337) : new Random();
+            rnd = useSeed ? new Random(1337) : new Random();
             ulong a = 0UL;
             Byte[] b = new Byte[8];
             rnd.NextBytes(b);
