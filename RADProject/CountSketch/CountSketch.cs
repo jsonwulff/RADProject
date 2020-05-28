@@ -1,3 +1,4 @@
+using System;
 using RADProject.HashFunctions;
 
 namespace RADProject.CountSketch {
@@ -10,8 +11,8 @@ namespace RADProject.CountSketch {
         ///</summary>
         ///<params name="size">The size of our table. It is a power of two and the image size of our hash function</params>
         ///<params name="hash">A fourUniversal hash approximator object. This does the hashing for our table</params>
-        public CountSketch(int size, FourUniversal hash){
-            g = hash
+        public CountSketch(int size, FourUniversal hash) {
+            g = hash;
             table = new ulong[size];
             for (int i = 0; i < size; i++){
                 table[i] = 0UL;
@@ -25,7 +26,7 @@ namespace RADProject.CountSketch {
         ///<params name="delta"> The value to add to our table entry </params>
         public void Add(ulong x, int delta){
             Tuple<ulong, int> hash = g.hash(x);
-            table[hash.Item1] += (hash.Item2 * delta);
+            table[hash.Item1] += (ulong)(hash.Item2 * delta);
         }
 
         ///<summary>
@@ -35,7 +36,7 @@ namespace RADProject.CountSketch {
         public ulong Chi(){
             ulong sum = 0UL;
             foreach (ulong y in table){
-                sum += Math.Pow(y, 2);
+                sum += (ulong)Math.Pow(y, 2);
             }
             return sum;
         }
