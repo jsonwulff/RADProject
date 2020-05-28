@@ -1,3 +1,4 @@
+using System;
 using RADProject.HashFunctions;
 
 namespace RADProject.HashTabel {
@@ -66,6 +67,26 @@ namespace RADProject.HashTabel {
             } else {
                 r.val = r.val + delta;
             }
+        }
+
+        /// <summary>
+        /// Suggestion for implementation of quad sum calculation
+        /// </summary>
+        /// <param name="obj">HashTable to calculate quad sum of</param>
+        /// <returns>ulong Quad sum</returns>
+        public static ulong calcQuadSum(HashTable obj) {
+            ulong QuadSum = 0UL;
+
+            for (int i = 0; i < 256; i++) {
+                LinkNode QS_cur = obj.table[i];
+
+                while (QS_cur != null) {
+                    //This method of using Math.Pow may risk having floating point errors.
+                    QuadSum = QuadSum + (ulong) (Math.Pow(QS_cur.val, 2));
+                    QS_cur = QS_cur.next;
+                }
+            }
+            return QuadSum;
         }
 
         public void TestHashTable(int n, Hash hashFunction, int[] lValues) { }

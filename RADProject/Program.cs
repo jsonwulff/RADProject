@@ -25,7 +25,9 @@ namespace RADProject {
                 modPrimeTable.Increment(tuple.Item1, tuple.Item2);
             }
 
-            ulong mS_QuadSum = 0UL;
+            
+           //Implementering af Quad sum er blevet flyttet til HashTable.cs
+           /* ulong mS_QuadSum = 0UL;
             ulong mP_QuadSum = 0UL;
 
             for (int i = 0; i < 256; i++) {
@@ -43,10 +45,10 @@ namespace RADProject {
                     mP_QuadSum = mP_QuadSum + (ulong) (Math.Pow(mP_cur.val, 2));
                     mP_cur = mP_cur.next;
                 }
-            }
+            }*/
 
-            Console.WriteLine("multshift quadratic sum: " + mS_QuadSum);
-            Console.WriteLine("modPrime  quadratic sum: " + mP_QuadSum);
+            Console.WriteLine("multshift quadratic sum: " + HashTable.calcQuadSum(multShiftTable));
+            Console.WriteLine("modPrime  quadratic sum: " + HashTable.calcQuadSum(modPrimeTable));
         }
     }
 }
