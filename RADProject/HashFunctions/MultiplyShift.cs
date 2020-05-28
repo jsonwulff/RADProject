@@ -32,7 +32,7 @@ namespace RADProject.HashFunctions {
             Console.WriteLine(">> Testing multiply-shift with n = {0}, l = {1}", n, l);
             ulong hashSum = 0;
             var watch = Stopwatch.StartNew();
-            foreach (var tuple in Stream.CreateStream(n, l)) {
+            foreach (var tuple in Stream.CreateStream(n, l,false)) {
                 hashSum += hash(tuple.Item1);
             }
 

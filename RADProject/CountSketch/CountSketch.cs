@@ -11,10 +11,10 @@ namespace RADProject.CountSketch {
         ///</summary>
         ///<params name="size">The size of our table. It is a power of two and the image size of our hash function</params>
         ///<params name="hash">A fourUniversal hash approximator object. This does the hashing for our table</params>
-        public CountSketch(int size, FourUniversal hash) {
+        public CountSketch(ulong size, FourUniversal hash) {
             g = hash;
             table = new ulong[size];
-            for (int i = 0; i < size; i++){
+            for (ulong i = 0; i < size; i++){
                 table[i] = 0UL;
             }
         }

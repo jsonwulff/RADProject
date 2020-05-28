@@ -10,7 +10,7 @@ namespace RADProject.HashTabel {
         ///</summary>
         ///<params name="size">The number of entries in our array. It is a power of 2 and the image size of the hash function t</params>
         ///<params name="t">The Hash object used to handle all hashing in the methods of this class</params>
-        public HashTable(int size, Hash t) {
+        public HashTable(ulong size, Hash t) {
             table = new LinkNode[size];
             h = t;
         }

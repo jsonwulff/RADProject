@@ -3,24 +3,32 @@ using RADProject.HashTabel;
 
 namespace RADProject.CountSketch {
     public class CSCalc {
-        private HashTabel t;
+        private HashTable t;
         private CountSketch[] cs;
         private ulong[] ChiValues;
         private ulong m;
+        private int streamSize;
+        private int hash_l;
+        private int stream_l;
 
-        public ulong[] CSCalc(int streamSize, int stream_l, int hash_l){
+        public CSCalc(int s, int s_l, int h_l){
             Hash h = new ModPrime(hash_l, true);
-            t = new HashTable(m, h);
             m = 1UL << hash_l;
+            t = new HashTable(m, h);
             cs = new CountSketch[100];
             ChiValues = new ulong[100];
+            streamSize = s;
+            hash_l = h_l;
+            stream_l = s_l;
 
+        }
+        public ulong[] Estimates(){
             for (int i = 0; i < 100; i++){
                 FourUniversal g = new FourUniversal(hash_l, true);
                 cs[i] = new CountSketch(m, g);
             }
 
-            foreach (var tuple in Stream.CreateStream(streamSize, streamSize)){
+            foreach (var tuple in Stream.CreateStream(streamSize, stream_l, true)){
                 t.Increment(tuple.Item1, tuple.Item2);
 
                 foreach (CountSketch c in cs){
@@ -30,7 +38,7 @@ namespace RADProject.CountSketch {
 
             // calculate S as in (Program lines 31-46)
             for (int i = 0; i < 100; i++){
-                ChiValues[i] = cs[i].Chi;
+                ChiValues[i] = cs[i].Chi();
             }
 
             return ChiValues;

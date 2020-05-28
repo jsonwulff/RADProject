@@ -16,7 +16,7 @@ namespace RADProjectTest {
             BigInteger b = modPrime.b;
             BigInteger p = modPrime.p;
             BigInteger twoPowL = (BigInteger) Math.Pow(2, modPrime.l);
-            foreach (var tuple in Stream.CreateStream(100, 50)) {
+            foreach (var tuple in Stream.CreateStream(100, 50, false)) {
                 ulong x = tuple.Item1;
                 ulong multiplyModPrime = (ulong) (((a * x + b) % p) % twoPowL);
                 Assert.AreEqual(multiplyModPrime, modPrime.hash(x));
@@ -30,7 +30,7 @@ namespace RADProjectTest {
             BigInteger b = modPrime.b;
             BigInteger p = modPrime.p;
             BigInteger twoPowL = (BigInteger) Math.Pow(2, modPrime.l);
-            foreach (var tuple in Stream.CreateStream(100, 63)) {
+            foreach (var tuple in Stream.CreateStream(100, 63, false)) {
                 ulong x = tuple.Item1;
                 ulong multiplyModPrime = (ulong) (((a * x + b) % p) % twoPowL);
                 Assert.AreEqual(multiplyModPrime, modPrime.hash(x));

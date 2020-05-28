@@ -20,7 +20,7 @@ namespace RADProject {
             HashTable multShiftTable = new HashTable(256, mS);
             HashTable modPrimeTable = new HashTable(256, mP);
 
-            foreach (var tuple in Stream.CreateStream(10000, 50)) {
+            foreach (var tuple in Stream.CreateStream(10000, 50, false)) {
                 multShiftTable.Increment(tuple.Item1, tuple.Item2);
                 modPrimeTable.Increment(tuple.Item1, tuple.Item2);
             }
