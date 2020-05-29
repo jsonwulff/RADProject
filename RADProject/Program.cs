@@ -29,12 +29,47 @@ namespace RADProject {
             Console.WriteLine("multshift quadratic sum: " + multShiftTable.calcQuadSum());
             Console.WriteLine("modPrime  quadratic sum: " + modPrimeTable.calcQuadSum());
 
-            int streamSize = 10000;
-            Console.WriteLine("Testing countsketch vs. true S value");
+            int streamSize = 10000; //Should be updated to just below our limit.
+            Console.WriteLine("Testing countsketch vs. true S value and outputting files");
+            String s_str, mse_str, chi_str, m_str;
+            s_str = mse_str = chi_str = m_str = "";
+            
             for (int l = 6; l < 12; l += 2){
                 CSCalc csc = new CSCalc(streamSize, 50, l);
                 Tuple<ulong[], ulong> estimates = csc.Estimates();
+                ulong[] chi_values = estimates.Item1;
+                ulong s = estimates.Item2;
+                ulong mse = 0UL;
+                
+                //Calculates the m_i = mean(g_i) and mean squared error = mse
+                ulong[] m = new ulong[9];
+                for (int i = 0; i < 10; i++){
+                    ulong[] g_i = new ulong[10];
+                    int index = i * 10;
+                    for (int j = 0; j < 10; j++){
+                        g_i[j] = chi_values[index+j];
+                        mse += (ulong) Math.Pow(chi_values[index+j] - s, 2);
+                    }
+                    Array.Sort(g_i);
+                    m[i] = g_i[5];
+                }
+                mse = mse/100;
+
+                //Sort the arrays
+                Array.Sort(chi_values);
+                Array.Sort(m);
+
+                //Updates the strings for the save files
+                m_str += String.Join(",", m) + "\n";
+                mse_str += String.Format("{0}\n", mse) + "\n";
+                s_str += String.Format("{0}\n", s) + "\n";
+                chi_str += String.Join(",", chi_values) + "\n";
             }
+
+            System.IO.File.WriteAllText(@".\s_values.txt", s_str);
+            System.IO.File.WriteAllText(@".\mse_values.txt", mse_str);
+            System.IO.File.WriteAllText(@".\chi_values.txt", chi_str);
+            System.IO.File.WriteAllText(@".\m_values.txt", m_str);
         }
     }
 }
