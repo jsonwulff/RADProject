@@ -24,29 +24,7 @@ namespace RADProject {
                 multShiftTable.Increment(tuple.Item1, tuple.Item2);
                 modPrimeTable.Increment(tuple.Item1, tuple.Item2);
             }
-
             
-           //Implementering af Quad sum er blevet flyttet til HashTable.cs
-           /* ulong mS_QuadSum = 0UL;
-            ulong mP_QuadSum = 0UL;
-
-            for (int i = 0; i < 256; i++) {
-                LinkNode mS_cur = multShiftTable.table[i];
-                LinkNode mP_cur = modPrimeTable.table[i];
-
-                while (mS_cur != null) {
-                    //This method of using Math.Pow may risk having floating point errors.
-                    mS_QuadSum = mS_QuadSum + (ulong) (Math.Pow(mS_cur.val, 2));
-                    mS_cur = mS_cur.next;
-                }
-
-                while (mP_cur != null) {
-                    //This method of using Math.Pow may risk having floating point errors.
-                    mP_QuadSum = mP_QuadSum + (ulong) (Math.Pow(mP_cur.val, 2));
-                    mP_cur = mP_cur.next;
-                }
-            }*/
-
             Console.WriteLine("multshift quadratic sum: " + HashTable.calcQuadSum(multShiftTable));
             Console.WriteLine("modPrime  quadratic sum: " + HashTable.calcQuadSum(modPrimeTable));
         }
