@@ -74,11 +74,11 @@ namespace RADProject.HashTabel {
         /// </summary>
         /// <param name="obj">HashTable to calculate quad sum of</param>
         /// <returns>ulong Quad sum</returns>
-        public static ulong calcQuadSum(HashTable obj) {
+        public ulong calcQuadSum() {
             ulong QuadSum = 0UL;
 
-            for (int i = 0; i < 256; i++) {
-                LinkNode QS_cur = obj.table[i];
+            for (int i = 0; i < table.Length; i++) {
+                LinkNode QS_cur = table[i];
 
                 while (QS_cur != null) {
                     //This method of using Math.Pow may risk having floating point errors.

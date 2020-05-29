@@ -2,6 +2,7 @@
 using RADProject.HashFunctions;
 using RADProject.HashTabel;
 using System.Diagnostics;
+using RADProject.CountSketch;
 
 namespace RADProject {
     class Program {
@@ -24,9 +25,16 @@ namespace RADProject {
                 multShiftTable.Increment(tuple.Item1, tuple.Item2);
                 modPrimeTable.Increment(tuple.Item1, tuple.Item2);
             }
-            
-            Console.WriteLine("multshift quadratic sum: " + HashTable.calcQuadSum(multShiftTable));
-            Console.WriteLine("modPrime  quadratic sum: " + HashTable.calcQuadSum(modPrimeTable));
+
+            Console.WriteLine("multshift quadratic sum: " + multShiftTable.calcQuadSum());
+            Console.WriteLine("modPrime  quadratic sum: " + modPrimeTable.calcQuadSum());
+
+            int streamSize = 10000;
+            Console.WriteLine("Testing countsketch vs. true S value");
+            for (int l = 6; l < 12; l += 2){
+                CSCalc csc = new CSCalc(streamSize, 50, l);
+                Tuple<ulong[], ulong> estimates = csc.Estimates();
+            }
         }
     }
 }
