@@ -1,5 +1,6 @@
 using RADProject.HashFunctions;
 using RADProject.HashTabel;
+using System;
 
 namespace RADProject.CountSketch {
     public class CSCalc {
@@ -22,7 +23,7 @@ namespace RADProject.CountSketch {
             stream_l = s_l;
 
         }
-        public ulong[] Estimates(){
+        public Tuple<ulong[], ulong> Estimates(){
             for (int i = 0; i < 100; i++){
                 FourUniversal g = new FourUniversal(hash_l, true);
                 cs[i] = new CountSketch(m, g);
@@ -36,12 +37,13 @@ namespace RADProject.CountSketch {
                 }
             }
 
-            // calculate S as in (Program lines 31-46)
+            ulong s = t.calcQuadSum();
+
             for (int i = 0; i < 100; i++){
                 ChiValues[i] = cs[i].Chi();
             }
 
-            return ChiValues;
+            return new Tuple<ulong[], ulong>(ChiValues, s);
         }
     }
 }
