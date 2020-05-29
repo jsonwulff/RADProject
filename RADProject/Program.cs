@@ -40,9 +40,9 @@ namespace RADProject {
                 ulong[] chi_values = estimates.Item1;
                 ulong s = estimates.Item2;
                 ulong mse = 0UL;
+                ulong[] m = new ulong[9];
                 
                 //Calculates the m_i = mean(g_i) and mean squared error = mse
-                ulong[] m = new ulong[9];
                 for (int i = 0; i < 10; i++){
                     ulong[] g_i = new ulong[10];
                     int index = i * 10;
@@ -61,11 +61,12 @@ namespace RADProject {
 
                 //Updates the strings for the save files
                 m_str += String.Join(",", m) + "\n";
-                mse_str += String.Format("{0}\n", mse) + "\n";
-                s_str += String.Format("{0}\n", s) + "\n";
+                mse_str += String.Format("{0}", mse) + "\n";
+                s_str += String.Format("{0}", s) + "\n";
                 chi_str += String.Join(",", chi_values) + "\n";
             }
 
+            //Not sure if it is a valid path
             System.IO.File.WriteAllText(@".\s_values.txt", s_str);
             System.IO.File.WriteAllText(@".\mse_values.txt", mse_str);
             System.IO.File.WriteAllText(@".\chi_values.txt", chi_str);
