@@ -76,15 +76,17 @@ namespace RADProject.HashTabel {
         /// <returns>ulong Quad sum</returns>
         public ulong calcQuadSum() {
             ulong QuadSum = 0UL;
-
             for (int i = 0; i < table.Length; i++) {
+                ulong small_s = 0ul;
                 LinkNode QS_cur = table[i];
 
                 while (QS_cur != null) {
                     //This method of using Math.Pow may risk having floating point errors.
-                    QuadSum = QuadSum + (ulong) (Math.Pow(QS_cur.val, 2));
+                    small_s = small_s + (ulong) QS_cur.val;
                     QS_cur = QS_cur.next;
                 }
+
+                QuadSum = QuadSum + (ulong) Math.Pow(small_s, 2);
             }
             return QuadSum;
         }
