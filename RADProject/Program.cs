@@ -41,17 +41,21 @@ namespace RADProject {
                 ulong s = estimates.Item2;
                 ulong mse = 0UL;
                 ulong[] m = new ulong[9];
-                
-                //Calculates the m_i = mean(g_i) and mean squared error = mse
-                for (int i = 0; i < 10; i++){
-                    ulong[] g_i = new ulong[10];
-                    int index = i * 10;
-                    for (int j = 0; j < 10; j++){
-                        g_i[j] = chi_values[index+j];
-                        mse += (ulong) Math.Pow(chi_values[index+j] - s, 2);
-                    }
+
+                //Calculates the M_i=mean(g_i) for i \in [9]
+                for (int i = 0; i < 9; i++){
+                    ulong[] g_i = new ulong[11];
+                    Array.Copy(chi_values, (i*11), g_i, 0, 11);
                     Array.Sort(g_i);
                     m[i] = g_i[5];
+                }
+                
+                //Calculates the mean squared error = mse
+                for (int i = 0; i < 10; i++){
+                    int index = i * 10;
+                    for (int j = 0; j < 10; j++){
+                        mse += (ulong) Math.Pow(chi_values[index+j] - s, 2);
+                    }
                 }
                 mse = mse/100;
 
