@@ -71,6 +71,11 @@ namespace RADProject {
             }
 
             //Not sure if it is a valid path
+            // string docPath = Environment.CurrentDirectory;
+            // string workingDirectory = Environment.CurrentDirectory;
+            // Console.WriteLine(workingDirectory);
+            // string projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.Parent.FullName;
+            // Console.WriteLine(projectDirectory);
             System.IO.File.WriteAllText(@"s_values.txt", s_str);
             System.IO.File.WriteAllText(@"mse_values.txt", mse_str);
             System.IO.File.WriteAllText(@"chi_values.txt", chi_str);

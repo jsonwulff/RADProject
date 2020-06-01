@@ -16,9 +16,9 @@ namespace RADProjectTest {
             BigInteger a2 = fourUniversal.a[2];
             BigInteger a3 = fourUniversal.a[3];
             BigInteger p  = fourUniversal.p;
-            foreach (var tuple in Stream.CreateStream(100, 50, true)) {
+            foreach (var tuple in Stream.CreateStream(100, 10, true)) {
                 ulong x = tuple.Item1;
-                BigInteger GHash = (a0 + a1 * x + a2 * (x * x) + a3 * (x * x * x)) % p;
+                BigInteger GHash = ((a0 % p )+ ((a1 * x) % p ) + ((a2 * (x * x)) % p) + (a3 * (x * x * x)) % p);
                 Assert.AreEqual(GHash, fourUniversal.g_hash(x));
             }
             
