@@ -14,7 +14,7 @@ namespace RADProject.CountSketch {
 
         public CSCalc(int s, int s_l, int h_l){
             Hash h = new ModPrime(hash_l, true);
-            m = 1UL << hash_l;
+            m = 1UL << h_l;
             t = new HashTable(m, h);
             cs = new CountSketch[100];
             ChiValues = new ulong[100];
