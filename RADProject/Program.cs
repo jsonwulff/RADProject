@@ -71,10 +71,10 @@ namespace RADProject {
             }
 
             //Not sure if it is a valid path
-            System.IO.File.WriteAllText(@".\s_values.txt", s_str);
-            System.IO.File.WriteAllText(@".\mse_values.txt", mse_str);
-            System.IO.File.WriteAllText(@".\chi_values.txt", chi_str);
-            System.IO.File.WriteAllText(@".\m_values.txt", m_str);
+            System.IO.File.WriteAllText(@"s_values.txt", s_str);
+            System.IO.File.WriteAllText(@"mse_values.txt", mse_str);
+            System.IO.File.WriteAllText(@"chi_values.txt", chi_str);
+            System.IO.File.WriteAllText(@"m_values.txt", m_str);
         }
     }
 }
