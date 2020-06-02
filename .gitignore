@@ -8,3 +8,5 @@ RADProject.sln.DotSettings.user
 .fake
 .ionide
 .vscode
+.DS_Store
+Results/*
