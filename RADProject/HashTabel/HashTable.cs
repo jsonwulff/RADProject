@@ -80,8 +80,8 @@ namespace RADProject.HashTabel {
                 LinkNode QS_cur = table[i];
 
                 while (QS_cur != null) {
-                    //This method of using Math.Pow may risk having floating point errors.
-                    QuadSum = QuadSum + (ulong) Math.Pow(QS_cur.val, 2);
+                    int val_to_power = QS_cur.val * QS_cur.val;
+                    QuadSum = QuadSum + (ulong) val_to_power;
                     QS_cur = QS_cur.next;
                 }
             }
