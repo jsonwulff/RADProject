@@ -10,24 +10,24 @@ namespace RADProjectTest {
         [Test]
         public void TestModPrime() {
             MultiplyShift multiplyShift = new MultiplyShift(63, false);
-            ulong a = multiplyShift.a;
-            int l = multiplyShift.l;
+            ulong a = multiplyShift.A;
+            int l = multiplyShift.L;
             foreach (var tuple in Stream.CreateStream(100, 50, false)) {
                 ulong x = tuple.Item1;
                 ulong multiplyModPrimeCalc = (a * x) >> (64 - l);
-                Assert.AreEqual(multiplyModPrimeCalc, multiplyShift.hash(x));
+                Assert.AreEqual(multiplyModPrimeCalc, multiplyShift.Hash(x));
             }
         }
 
         [Test]
         public void TestModPrimeRandom() {
             MultiplyShift multiplyShift = new MultiplyShift(63, true);
-            ulong a = multiplyShift.a;
-            int l = multiplyShift.l;
+            ulong a = multiplyShift.A;
+            int l = multiplyShift.L;
             foreach (var tuple in Stream.CreateStream(100, 50, false)) {
                 ulong x = tuple.Item1;
                 ulong multiplyModPrimeCalc = (a * x) >> (64 - l);
-                Assert.AreEqual(multiplyModPrimeCalc, multiplyShift.hash(x));
+                Assert.AreEqual(multiplyModPrimeCalc, multiplyShift.Hash(x));
             }
         }
     }
