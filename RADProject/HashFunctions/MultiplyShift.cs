@@ -28,11 +28,11 @@ namespace RADProject.HashFunctions {
             return (a * x) >> (64 - l);
         }
 
-        public void TestMultiplyShift(int n, int l) {
-            Console.WriteLine(">> Testing multiply-shift with n = {0}, l = {1}", n, l);
+        public void TestMultiplyShift(int n, int L, bool useSeed) {
+            Console.WriteLine(">> Testing multiply-shift with n = {0}, l = {1}", n, L);
             ulong hashSum = 0;
             var watch = Stopwatch.StartNew();
-            foreach (var tuple in Stream.CreateStream(n, l,false)) {
+            foreach (var tuple in Stream.CreateStream(n, L,useSeed)) {
                 hashSum += hash(tuple.Item1);
             }
 

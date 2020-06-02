@@ -47,11 +47,11 @@ namespace RADProject.HashFunctions {
             return (ulong) (y & ((1UL << l) - 1));
         }
 
-        public void TestMultiplyModPrime(int n, int l) {
+        public void TestMultiplyModPrime(int n, int l, bool useSeed) {
             Console.WriteLine(">> Testing multiply-mod-prime with n = {0}, l = {1}", n, l);
             ulong hashSum = 0;
             var watch = Stopwatch.StartNew();
-            foreach (var tuple in Stream.CreateStream(n, l, false)) {
+            foreach (var tuple in Stream.CreateStream(n, l, useSeed)) {
                 hashSum += hash(tuple.Item1);
             }
 
