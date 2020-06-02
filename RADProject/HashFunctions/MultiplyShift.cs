@@ -2,38 +2,38 @@ using System;
 using System.Diagnostics;
 
 namespace RADProject.HashFunctions {
-    public class MultiplyShift : Hash {
-        public ulong a;
-        public int l;
+    public class MultiplyShift : IHashFunction {
+        public ulong A;
+        public int L;
 
-        public MultiplyShift(int img, bool random) : base(img, random) {
-            l = img;
+        public MultiplyShift(int img, bool random) {
+            L = img;
 
             if (random) {
-                hashgen();
+                HashGen();
             } else {
-                Byte[] a_bytes = {0x53, 0x54, 0x96, 0x72, 0xa8, 0xb1, 0x09, 0xd4};
-                a = BitConverter.ToUInt64(a_bytes, 0);
+                Byte[] aBytes = {0x53, 0x54, 0x96, 0x72, 0xa8, 0xb1, 0x09, 0xd4};
+                A = BitConverter.ToUInt64(aBytes, 0);
             }
         }
 
-        private void hashgen() {
-            Random rnd = new System.Random();
+        public void HashGen() {
+            Random rnd = new Random();
             Byte[] b = new Byte[8];
             rnd.NextBytes(b);
-            a = BitConverter.ToUInt64(b, 0) | 1; // "| 1" Ensures odd number
+            A = BitConverter.ToUInt64(b, 0) | 1; // "| 1" Ensures odd number
         }
 
-        public ulong hash(ulong x) {
-            return (a * x) >> (64 - l);
+        public ulong Hash(ulong x) {
+            return (A * x) >> (64 - L);
         }
 
-        public void TestMultiplyShift(int n, int L, bool useSeed) {
-            Console.WriteLine(">> Testing multiply-shift with n = {0}, l = {1}", n, L);
+        public void TestMultiplyShift(int streamN, int streamL, bool useSeed) {
+            Console.WriteLine(">> Testing multiply-shift with n = {0}, l = {1}", streamN, streamL);
             ulong hashSum = 0;
             var watch = Stopwatch.StartNew();
-            foreach (var tuple in Stream.CreateStream(n, L,useSeed)) {
-                hashSum += hash(tuple.Item1);
+            foreach (var tuple in Stream.CreateStream(streamN, streamL, useSeed)) {
+                hashSum += Hash(tuple.Item1);
             }
 
             watch.Stop();

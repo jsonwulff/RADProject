@@ -6,7 +6,7 @@ using System;
         /// ulong key     - The "x" value that hashes to this linked list and is stored in this node
         /// int val       - The delta value (weight) of this particular "x".
         ///</summary>
-namespace RADProject.HashTabel {
+namespace RADProject.HashTable {
     public class LinkNode {
         public LinkNode next;
         public ulong key;
