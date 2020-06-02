@@ -83,7 +83,7 @@ namespace RADProject {
         ///</summary>
         ///<params name="x"> The key we want to hash </params>
         ///<returns> A BigInteger hashvalue for the key x </returns>
-        public BigInteger g_hash(ulong x) {
+        public BigInteger GHash(ulong x) {
             BigInteger y = A[3];
             for (int i = 2; i >= 0; i--) {
                 y = (y * x) + A[i];
@@ -104,7 +104,7 @@ namespace RADProject {
         ///<params name="x"> The key value we wish to calculate h(x) and s(x) from </params>
         ///<returns> h(x), s(x) as a tuple (ulong, int) = (h(x), s(x)) </returns>
         public Tuple<ulong, int> Hash(ulong x) {
-            BigInteger g = g_hash(x);
+            BigInteger g = GHash(x);
             ulong h = (ulong) (g & (M - 1));
             int b = (int) (g >> (88));
             int s = (1 - (2 * b));
