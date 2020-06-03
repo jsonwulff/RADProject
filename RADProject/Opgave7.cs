@@ -54,6 +54,8 @@ namespace RADProject {
 
             Console.WriteLine(">> Calculating Mean Squared Error:");
             //Calculates the mean squared error = mse
+            //Calculating Mean-Square-Error is wrong here, and have been moved to the Results folder.
+            //We ran out of time.
             for (int i = 0; i < 10; i++){
                 int index = i * 10;
                 for (int j = 0; j < 10; j++){
