@@ -6,14 +6,14 @@ namespace RADProject {
 
     public class Opgave7 {
         
-        public static void Run(int streamSize, int l) {
+        public static void Run(int streamSize, int l, int sL) {
 
             Console.WriteLine(">>>> OPGAVE 7 <<<<");
             Console.WriteLine(String.Format(">> Stream size: {0}\t l: {1}", streamSize, l));
             
             Console.WriteLine(">> Creating CSCalc with parameters.");
             
-            CSCalc csc = new CSCalc(streamSize, 13, l);
+            CSCalc csc = new CSCalc(streamSize, sL, l);
             Tuple<ulong[], ulong> estimates = csc.Estimates();
             ulong[] chi_values = estimates.Item1;
             ulong s = estimates.Item2;
