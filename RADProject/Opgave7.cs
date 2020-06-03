@@ -1,5 +1,6 @@
 using System;
 using System.Numerics;
+using System.IO;
 using RADProject.Table;
 using RADProject.CountSketch;
 using RADProject.HashFunctions;
@@ -59,17 +60,17 @@ namespace RADProject {
                     BigInteger error = (int) (chiValues[index+j] - s);
                     mse += (error * error);
 
-                    Console.WriteLine(String.Format("current sum of squared errors: {0} \t error from S={1} at Chi[{2}]={3} is: {4}", mse, s, (index+j), chiValues[index+j], error));
+                    Console.WriteLine(String.Format("current sum of squared errors: {0} \t error from S={1} at Chi[{2}]={3} is: {4} \t or ({5}%)", mse, s, (index+j), chiValues[index+j], error, (error/s)*100));
                 }
             }
 
             mse = (mse/100);
             Console.WriteLine(String.Format("Final computed mean squared error: {0}", mse));
             
-            //Sort the arrays
-            //Array.Sort(chiValues);
-            //Array.Sort(m);
-
+            
+            Array.Sort(chiValues);
+            Array.Sort(m_i_array);
+            this.FileGeneration(mse, m_i_array);
         }
 
         private void InstanciateCountSketchesAndHashTable(){
@@ -105,6 +106,13 @@ namespace RADProject {
             for (int i = 0; i < 100; i++){
                 chiValues[i] = countSketchArray[i].Chi();
             }
+        }
+
+        public void FileGeneration(BigInteger mse, ulong[] m_i){
+            string resultsFile = Path.Combine("Results", String.Format("opgave7-output-w-l-{0}", hashImageSpace));
+
+            String result_str = String.Format("{0},{1},", s, mse) + "[" + String.Join(",", chiValues) + "],[" + String.Join(",", m_i) + "]";
+            File.AppendAllText(resultsFile, result_str);
         }
     }
 }
