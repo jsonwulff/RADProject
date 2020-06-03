@@ -11,8 +11,11 @@ namespace RADProject {
             //Opgave1.Run(1048576, 12, 18);
             //Opgave3.RunMultiplyModPrime();
             //Opgave3.RunMultiplyShift();
-            Opgave7 instans = new Opgave7((1<<19),13, 13);
-            instans.Run();
+            //Opgave 7 & 8
+            for (int l = 8; l < 14; l += 2){
+                Opgave7 instans = new Opgave7((1<<19), l, 13);
+                instans.Run();
+            }
             
             // MultiplyShift multiplyShift = new MultiplyShift(2, false);
             // HashTable msTable = new HashTable(4, multiplyShift);
