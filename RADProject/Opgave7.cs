@@ -60,7 +60,7 @@ namespace RADProject {
                     BigInteger error = (int) (chiValues[index+j] - s);
                     mse += (error * error);
 
-                    Console.WriteLine(String.Format("current sum of squared errors: {0} \t error from S={1} at Chi[{2}]={3} is: {4} \t or ({5}%)", mse, s, (index+j), chiValues[index+j], error, (error/s)*100));
+                    Console.WriteLine(String.Format("current sum of squared errors: {0} \t error from S={1} at Chi[{2}]={3} is: {4})", mse, s, (index+j), chiValues[index+j], error));
                 }
             }
 
@@ -109,9 +109,9 @@ namespace RADProject {
         }
 
         public void FileGeneration(BigInteger mse, ulong[] m_i){
-            string resultsFile = Path.Combine("Results", String.Format("opgave7-output-w-l-{0}", hashImageSpace));
-
-            String result_str = String.Format("{0},{1},", s, mse) + "[" + String.Join(",", chiValues) + "],[" + String.Join(",", m_i) + "]";
+            string resultsFile = Path.Combine("Results", String.Format("opgave7-output-w-l-{0}.csv", hashImageSpace));
+            File.WriteAllText(resultsFile, "s; mse; chiValues; m_i");
+            String result_str = String.Format("{0};{1};", s, mse) + "[" + String.Join(",", chiValues) + "];[" + String.Join(",", m_i) + "]";
             File.AppendAllText(resultsFile, result_str);
         }
     }
