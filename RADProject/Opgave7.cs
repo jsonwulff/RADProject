@@ -32,6 +32,7 @@ namespace RADProject {
             Console.WriteLine(">>>> OPGAVE 7 <<<<");
             Console.WriteLine(String.Format(">> Stream size: {0}\t l: {1}", streamInputSize, hashImageSpace));
             
+            this.InstanciateCountSketchesAndHashTable();
             this.CalculateEstimates();
 
             BigInteger mse = 0;
@@ -62,7 +63,7 @@ namespace RADProject {
                 }
             }
 
-            mse = (mse/100)/s;
+            mse = (mse/100);
             Console.WriteLine(String.Format("Final computed mean squared error: {0}", mse));
             
             //Sort the arrays
@@ -85,8 +86,6 @@ namespace RADProject {
         }
 
         private void CalculateEstimates(){
-            InstanciateCountSketchesAndHashTable();
-
             String msg = String.Format("Running over a stream of size n={0},\t with an imagespace of 2^{1} \n Incrementing the hashtable, and adding to all countsketches, (x, delta)", streamInputSize, streamImageSpace);
             Console.WriteLine(msg);
 
