@@ -40,7 +40,7 @@ namespace RADProject.CountSketch {
         public ulong Chi() {
             ulong sum = 0UL;
             foreach (ulong y in Table) {
-                sum += (ulong) Math.Pow(y, 2);
+                sum += (ulong) y * y;
             }
 
             return sum;
