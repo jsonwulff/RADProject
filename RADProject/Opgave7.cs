@@ -9,7 +9,7 @@ namespace RADProject {
     public class Opgave7 {
         private HashTable hashTable;
 
-        private CountSketch[] countSketchArray;
+        private CountSketch.CountSketch[] countSketchArray;
 
         private ulong[] chiValues;
 
@@ -75,12 +75,12 @@ namespace RADProject {
             Console.WriteLine("Instanciating the Countsketches and the hash table");
             MultiplyShift h = new MultiplyShift(hashImageSpace, true);
             hashTable = new HashTable(m, h);
-            countSketchArray = new CountSketch[100];
+            countSketchArray = new CountSketch.CountSketch[100];
             chiValues = new ulong[100];
 
             for (int i=0; i<100; i++){
                 FourUniversal g = new FourUniversal(hashImageSpace, true);
-                countSketchArray[i] = new CountSketch(m, g);
+                countSketchArray[i] = new CountSketch.CountSketch(m, g);
             }
         }
 
@@ -93,7 +93,7 @@ namespace RADProject {
             foreach (var tuple in Stream.CreateStream(streamInputSize, streamImageSpace, true)){
                 hashTable.Increment(tuple.Item1, tuple.Item2);
 
-                foreach(CountSketch c in countSketchArray){
+                foreach(CountSketch.CountSketch c in countSketchArray){
                     c.Add(tuple.Item1, tuple.Item2);
                 }
             }
