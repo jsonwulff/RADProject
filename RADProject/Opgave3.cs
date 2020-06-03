@@ -7,7 +7,7 @@ using RADProject.Table;
 namespace RADProject {
     public class Opgave3 {
         public static void RunMultiplyModPrime() {
-            Console.WriteLine(">>>> ASSIGNMENT 3 <<<<");
+            Console.WriteLine(">>>> ASSIGNMENT 3 - Multiply--Mod-Shift <<<<");
         
             string projectDir = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
             string resultsDir = Path.Combine(projectDir, "Results");
@@ -23,7 +23,7 @@ namespace RADProject {
                 ulong tableSize = 1UL << i;
                 int n = 1 << 19;
                 HashTable hashTable = new HashTable(tableSize, multiplyModPrime);
-                foreach (var tuple in Stream.CreateStream(n, i+3, true)) {
+                foreach (var tuple in Stream.CreateStream(n, i, true)) {
                     hashTable.Increment(tuple.Item1, tuple.Item2);
                 }
         
@@ -37,7 +37,7 @@ namespace RADProject {
         }
         
         public static void RunMultiplyShift() {
-            Console.WriteLine(">>>> ASSIGNMENT 3 <<<<");
+            Console.WriteLine(">>>> ASSIGNMENT 3 - Multiply-Shift <<<<");
         
             string projectDir = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
             string resultsDir = Path.Combine(projectDir, "Results");
@@ -51,9 +51,9 @@ namespace RADProject {
                 Console.WriteLine("Running multiply-shift with l = {0}", i);
                 MultiplyShift multiplyShift = new MultiplyShift(i, false);
                 ulong tableSize = 1UL << i;
-                int n = 1 << 19;
+                int n = 1 << 20;
                 HashTable hashTable = new HashTable(tableSize, multiplyShift);
-                foreach (var tuple in Stream.CreateStream(n, i+3, true)) {
+                foreach (var tuple in Stream.CreateStream(n, i, true)) {
                     hashTable.Increment(tuple.Item1, tuple.Item2);
                 }
         
