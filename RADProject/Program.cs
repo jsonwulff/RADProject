@@ -8,10 +8,11 @@ using RADProject.CountSketch;
 namespace RADProject {
     class Program {
         static void Main(string[] args) {
-            Opgave1.Run(1048576, 12, 18);
-            Opgave3.RunMultiplyModPrime();
-            Opgave3.RunMultiplyShift();
-            Opgave7.Run((1<<19),13);
+            //Opgave1.Run(1048576, 12, 18);
+            //Opgave3.RunMultiplyModPrime();
+            //Opgave3.RunMultiplyShift();
+            Opgave7 instans = new Opgave7((1<<19),13, 13);
+            instans.Run();
             
             // MultiplyShift multiplyShift = new MultiplyShift(2, false);
             // HashTable msTable = new HashTable(4, multiplyShift);
