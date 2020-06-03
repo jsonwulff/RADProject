@@ -1,4 +1,5 @@
 using System;
+using RADProject.HashFunctions;
 
 namespace RADProject.CountSketch {
     public class CountSketch {

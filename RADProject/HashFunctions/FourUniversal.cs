@@ -1,7 +1,7 @@
 using System;
 using System.Numerics;
 
-namespace RADProject {
+namespace RADProject.HashFunctions {
     public class FourUniversal {
         ///<summary>
         /// Instantiates the four public variables.null These are used in the g_hash function and are set in the

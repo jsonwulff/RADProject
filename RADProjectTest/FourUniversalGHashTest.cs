@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using RADProject;
 using System.Numerics;
+using RADProject.HashFunctions;
 
 namespace RADProjectTest {
     public class FourUniversalGHashTest {
@@ -17,8 +18,8 @@ namespace RADProjectTest {
             BigInteger p = fourUniversal.P;
             foreach (var tuple in Stream.CreateStream(100, 63, true)) {
                 BigInteger x = (BigInteger) tuple.Item1;
-                BigInteger GHash = (a0 + a1 * x % p + a2 * (x * x) + a3 * (x * x * x)) % p;
-                Assert.AreEqual(GHash, fourUniversal.GHash((ulong) x));
+                BigInteger gHash = (a0 + a1 * x % p + a2 * (x * x) + a3 * (x * x * x)) % p;
+                Assert.AreEqual(gHash, fourUniversal.GHash((ulong) x));
             }
         }
         
@@ -32,8 +33,8 @@ namespace RADProjectTest {
             BigInteger p = fourUniversal.P;
             foreach (var tuple in Stream.CreateStream(100, 63, true)) {
                 BigInteger x = (BigInteger) tuple.Item1;
-                BigInteger GHash = (a0 + a1 * x % p + a2 * (x * x) + a3 * (x * x * x)) % p;
-                Assert.AreEqual(GHash, fourUniversal.GHash((ulong) x));
+                BigInteger gHash = (a0 + a1 * x % p + a2 * (x * x) + a3 * (x * x * x)) % p;
+                Assert.AreEqual(gHash, fourUniversal.GHash((ulong) x));
             }
         }
     }

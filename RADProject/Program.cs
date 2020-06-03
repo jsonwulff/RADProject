@@ -11,6 +11,7 @@ namespace RADProject {
             Opgave1.Run(1048576, 12, 18);
             Opgave3.RunMultiplyModPrime();
             Opgave3.RunMultiplyShift();
+            Opgave7.Run((1<<19),13);
             
             // MultiplyShift multiplyShift = new MultiplyShift(2, false);
             // HashTable msTable = new HashTable(4, multiplyShift);
