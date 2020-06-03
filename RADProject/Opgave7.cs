@@ -91,11 +91,13 @@ namespace RADProject {
             Console.WriteLine(msg);
 
             foreach (var tuple in Stream.CreateStream(streamInputSize, streamImageSpace, true)){
-                hashTable.Increment(tuple.Item1, tuple.Item2);
-
                 foreach(CountSketch.CountSketch c in countSketchArray){
                     c.Add(tuple.Item1, tuple.Item2);
                 }
+            }
+
+            foreach (var tuple in Stream.CreateStream(streamInputSize, streamImageSpace, true)){
+                hashTable.Increment(tuple.Item1, tuple.Item2);
             }
             
             Console.WriteLine("Calculating S as quadSum");
@@ -110,7 +112,7 @@ namespace RADProject {
 
         public void FileGeneration(BigInteger mse, ulong[] m_i){
             string resultsFile = Path.Combine("Results", String.Format("opgave7-output-w-l-{0}.csv", hashImageSpace));
-            File.WriteAllText(resultsFile, "s; mse; chiValues; m_i");
+            File.WriteAllText(resultsFile, "s; mse; chiValues; m_i\n");
             String result_str = String.Format("{0};{1};", s, mse) + "[" + String.Join(",", chiValues) + "];[" + String.Join(",", m_i) + "]";
             File.AppendAllText(resultsFile, result_str);
         }

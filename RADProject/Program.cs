@@ -12,7 +12,7 @@ namespace RADProject {
             //Opgave3.RunMultiplyModPrime();
             //Opgave3.RunMultiplyShift();
             //Opgave 7 & 8
-            for (int l = 8; l < 14; l += 2){
+            for (int l = 6; l < 12; l += 2){
                 Opgave7 instans = new Opgave7((1<<19), l, 13);
                 instans.Run();
             }
